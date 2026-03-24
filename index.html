@@ -71,6 +71,38 @@
         }
 
         footer { text-align: center; padding: 20px; font-size: 0.9em; color: #666; }
+   /* 1. Estilo base do botão (já com a animação vinculada) */
+.btn-whatsapp {
+    display: block;
+    background: #25d366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: 0.3s;
+    /* Adiciona a animação de pulso infinita */
+    animation: pulsar 2s infinite; 
+}
+
+/* 2. A "mágica" do movimento (Keyframes) */
+@keyframes pulsar {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
     </style>
 </head>
 <body>
