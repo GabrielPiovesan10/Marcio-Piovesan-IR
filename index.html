@@ -32,7 +32,6 @@
         .servicos li { margin-bottom: 10px; padding-left: 30px; position: relative; }
         .servicos li::before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: var(--primary); }
 
-        /* Estilo Documentos */
         summary { font-weight: bold; color: var(--primary); cursor: pointer; padding: 5px; outline: none; list-style: none; }
         .documentos-menu { background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 10px; padding: 10px; }
         .conteudo-menu ul { list-style: none; padding: 0; margin: 10px 0 0 0; }
@@ -43,10 +42,38 @@
         .creditos-gabriel { text-align: center; padding-bottom: 40px; font-size: 0.75rem; color: #666; }
         .btn-gabriel { display: inline-flex; align-items: center; gap: 5px; background: #128c7e; color: white !important; text-decoration: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; }
 
-        /* IA MÁRCIO */
-        #chat-icon { position: fixed; top: 80px; right: 15px; background: var(--primary); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(0, 51, 102, 0.4); }
-        #chat-window { display: none; position: fixed; top: 140px; right: 15px; width: 280px; background: white; border: 1px solid #ddd; border-top: 5px solid var(--primary); border-radius: 12px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); font-family: sans-serif; }
-        #chat-content { height: 250px; padding: 15px; overflow-y: auto; color: #333; font-size: 13px; text-align: left; }
+        /* --- AJUSTE DA IA PARA O CANTO INFERIOR (RESOLVE O PROBLEMA DO NOME) --- */
+        #chat-icon { 
+            position: fixed; 
+            bottom: 30px; /* Movido para baixo */
+            right: 20px; 
+            background: var(--primary); 
+            color: white; 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            z-index: 1001; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+        }
+        #chat-window { 
+            display: none; 
+            position: fixed; 
+            bottom: 95px; /* Abre para cima do ícone */
+            right: 20px; 
+            width: 300px; 
+            background: white; 
+            border: 1px solid #ddd; 
+            border-top: 5px solid var(--primary); 
+            border-radius: 12px; 
+            z-index: 1000; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            font-family: sans-serif; 
+        }
+        #chat-content { height: 280px; padding: 15px; overflow-y: auto; color: #333; font-size: 13px; text-align: left; }
         .chat-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; background: #f9f9f9; }
         .chat-input-area input { flex: 1; border: 1px solid #ddd; padding: 8px; border-radius: 5px; outline: none; }
         .chat-input-area button { background: var(--primary); color: white; border: none; margin-left: 5px; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
@@ -55,9 +82,10 @@
 </head>
 <body>
 
-    <div id="chat-icon" onclick="toggleChat()"><i class="fas fa-user-tie"></i></div>
+    <div id="chat-icon" onclick="toggleChat()"><i class="fas fa-user-tie" style="font-size: 24px;"></i></div>
+    
     <div id="chat-window">
-        <div style="background:var(--primary); color:white; padding:10px; text-align:center; font-weight:bold; font-size:12px;">ASSISTENTE MÁRCIO PIOVESAN</div>
+        <div style="background:var(--primary); color:white; padding:12px; text-align:center; font-weight:bold; font-size:13px;">ASSISTENTE MÁRCIO PIOVESAN</div>
         <div id="chat-content">
             <p><strong>Robô:</strong> Olá! Sou o assistente virtual do Márcio. Como posso te chamar?</p>
         </div>
@@ -99,7 +127,7 @@
                 <h3 style="text-align: center; color: var(--primary);"><i class="fas fa-file-invoice"></i> Documentos para o IR 2026</h3>
                 
                 <details class="documentos-menu">
-                    <summary>1. Documentos Pessoais</summary>
+                    <summary>1. Documentos Pessoais (Clique aqui)</summary>
                     <div class="conteudo-menu">
                         <ul>
                             <li>RG, CPF e Título de Eleitor</li>
@@ -111,7 +139,7 @@
                 </details>
 
                 <details class="documentos-menu">
-                    <summary>2. Comprovantes de Renda</summary>
+                    <summary>2. Comprovantes de Renda (Clique aqui)</summary>
                     <div class="conteudo-menu">
                         <ul>
                             <li>Informe de Rendimentos da empresa (Holerites)</li>
@@ -122,7 +150,7 @@
                 </details>
 
                 <details class="documentos-menu">
-                    <summary>3. Recibos e Bens (Deduções)</summary>
+                    <summary>3. Recibos e Bens (Clique aqui)</summary>
                     <div class="conteudo-menu">
                         <ul>
                             <li>Recibos médicos, dentistas e planos de saúde</li>
@@ -155,7 +183,7 @@
 
         function sendMessage() {
             const input = document.getElementById('user-input');
-            const area = document.getElementById('chat-content');
+            const area = document.getElementById("chat-content");
             const msgOrig = input.value.trim();
             const msg = msgOrig.toLowerCase();
             if (!msg) return;
@@ -164,7 +192,7 @@
             input.value = "";
 
             const tid = "t-" + Date.now();
-            area.innerHTML += `<div id="${tid}" class="typing">Márcio está digitando...</div>`;
+            area.innerHTML += `<div id="${tid}" class="typing">Aguarde, processando...</div>`;
             area.scrollTop = area.scrollHeight;
 
             setTimeout(() => {
@@ -173,33 +201,32 @@
 
                 if (etapaChat === 1) {
                     nomeUser = msgOrig;
-                    r = `Prazer, ${nomeUser}! 😊 Como posso te ajudar com seu Imposto de Renda hoje?`;
+                    r = `Prazer, ${nomeUser}! 😊 No que posso ajudar você e o Márcio hoje?`;
                     etapaChat = 2;
                 } else {
-                    if (msg.includes("documento") || msg.includes("lista")) {
-                        r = `${nomeUser}, a lista básica está no site, mas os principais são Informes de Rendimentos e recibos médicos. Quer falar com o Márcio?`;
-                        zap = true;
+                    if (msg.includes("documento") || msg.includes("enviar")) {
+                        r = `${nomeUser}, a lista completa de documentos está logo acima no site! Precisa de ajuda para organizar?`;
                     }
                     else if (msg.includes("prazo") || msg.includes("data")) {
-                        r = "O prazo do IR 2026 vai até o final de maio. Recomendo enviar tudo quanto antes!";
+                        r = "O prazo do IR 2026 vai até maio. O ideal é não deixar para a última hora!";
                     }
                     else if (msg.includes("valor") || msg.includes("quanto")) {
-                        r = "O valor da declaração varia. O Márcio pode te passar um orçamento agora no WhatsApp:";
+                        r = "O valor depende da sua declaração. O Márcio pode te passar um orçamento agora:";
                         zap = true;
                     }
                     else if (msg.includes("sim") || msg.includes("quero")) {
-                        r = "Ótimo! Clique no botão para iniciar seu atendimento:";
+                        r = "Perfeito! Clique no botão abaixo para falar com o Márcio:";
                         zap = true;
                     }
                     else {
-                        r = `Entendi, ${nomeUser}! O Márcio Piovesan pode tirar essa dúvida específica para você no WhatsApp.`;
+                        r = `Entendi, ${nomeUser}! Vou deixar o link do WhatsApp do Márcio aqui para você tirar essa dúvida direto com ele.`;
                         zap = true;
                     }
                 }
 
                 area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
                 if(zap) {
-                    area.innerHTML += `<div style="text-align:center;margin:10px 0;"><a href="https://wa.me/5519996583013?text=Olá Márcio, vim pelo site e preciso de ajuda com meu IR" target="_blank" style="background:#25d366;color:white;padding:8px 15px;border-radius:20px;text-decoration:none;font-weight:bold;font-size:11px;">Falar no WhatsApp</a></div>`;
+                    area.innerHTML += `<div style="text-align:center;margin:10px 0;"><a href="https://wa.me/5519996583013?text=Olá Márcio, vim pelo site e preciso de ajuda com meu IR" target="_blank" style="background:#25d366;color:white;padding:10px 18px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:12px;display:inline-block;"><i class="fab fa-whatsapp"></i> Chamar Márcio no Zap</a></div>`;
                 }
                 area.scrollTop = area.scrollHeight;
             }, 1200);
