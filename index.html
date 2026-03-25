@@ -8,11 +8,11 @@
       gtag('js', new Date());
       gtag('config', 'G-NPR39RXFKC');
 
-      // Função para rastrear cliques no WhatsApp (Conversão)
+      // Função para avisar o Google sobre o clique no WhatsApp
       function trackZap() {
-        gtag('event', 'contato_whatsapp_marcio', {
+        gtag('event', 'clique_whatsapp_marcio', {
           'event_category': 'Conversão',
-          'event_label': 'Clique no Botão Principal'
+          'event_label': 'Botão Principal'
         });
       }
     </script>
@@ -27,88 +27,40 @@
 
     <style>
         :root {
-            --primary: #003366; 
+            --primary: #003366;
             --accent: #ff3e3e;  
             --bg: #f4f7f6;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background-color: var(--bg);
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), 
-                        url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=2059&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg); color: #333; line-height: 1.6; overflow-x: hidden; }
+        
+        header { background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=2059&auto=format&fit=crop'); background-size: cover; background-position: center; color: white; padding: 80px 20px; text-align: center; }
         .hero h1 { margin: 0; font-size: 2.5em; }
         .hero p { font-style: italic; opacity: 0.9; margin-top: 10px; }
 
         .container { max-width: 800px; margin: -40px auto 40px; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 20px; }
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .btn-whatsapp {
-            display: block;
-            background: #25d366;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: 0.3s;
-            animation: pulsar 2s infinite;
-        }
-
-        .btn-whatsapp:hover { transform: scale(1.02); background: #128c7e; }
+        .btn-whatsapp { display: block; background: #25d366; color: white; text-align: center; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.2em; animation: pulsar 2s infinite; cursor: pointer; }
+        @keyframes pulsar { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); } }
 
         .servicos ul { list-style: none; padding: 0; }
         .servicos li { margin-bottom: 10px; padding-left: 30px; position: relative; }
-        .servicos li::before {
-            content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900;
-            position: absolute; left: 0; color: var(--primary);
-        }
+        .servicos li::before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: var(--primary); }
 
-        @keyframes pulsar {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
+        summary { font-weight: bold; color: var(--primary); cursor: pointer; padding: 5px; outline: none; list-style: none; }
         .documentos-menu { background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 10px; padding: 10px; }
-        summary { font-weight: bold; color: #003366; cursor: pointer; padding: 5px; outline: none; list-style: none; }
-        .conteudo-menu { padding: 15px 10px 5px; border-top: 1px solid #eee; margin-top: 10px; }
-        .conteudo-menu ul { list-style: none; padding: 0; margin: 0; }
-        .conteudo-menu li { padding: 8px 0; font-size: 0.95em; border-bottom: 1px dashed #eee; position: relative; padding-left: 20px; }
-        .conteudo-menu li::before { content: "→"; position: absolute; left: 0; color: #ff3e3e; }
+        .menu-conteudo ul { list-style: none; padding: 0; margin: 10px 0 0 0; }
+        .menu-conteudo li { padding: 8px 0; font-size: 0.95em; border-bottom: 1px dashed #eee; position: relative; padding-left: 20px; }
+        .menu-conteudo li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
         footer { text-align: center; padding: 20px; font-size: 0.9em; color: #666; }
+        .creditos-gabriel { text-align: center; padding-bottom: 40px; font-size: 0.75rem; color: #666; }
+        .btn-gabriel { display: inline-flex; align-items: center; gap: 5px; background: #128c7e; color: white !important; text-decoration: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; }
 
-        /* Estilos dos Créditos do Gabriel */
-        .creditos-gabriel { text-align: center; padding: 10px 0 20px 0; background-color: #f4f7f6; font-size: 0.75rem; color: #666; }
-        .btn-gabriel { display: inline-flex; align-items: center; gap: 5px; background-color: #128c7e; color: white !important; text-decoration: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 0.75rem; transition: 0.3s; }
-        .btn-gabriel:hover { background-color: #25d366; transform: scale(1.05); }
-
-        /* ESTILO DA IA (GABRIEL MOTION) */
+        /* IA GABRIEL MOTION */
         #chat-icon { position: fixed; bottom: 30px; right: 20px; background: var(--primary); color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
-        #chat-window { display: none; position: fixed; bottom: 95px; right: 20px; width: 300px; background: white; border: 1px solid #ddd; border-top: 5px solid var(--primary); border-radius: 12px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); font-family: sans-serif; overflow: hidden; }
+        #chat-window { display: none; position: fixed; bottom: 95px; right: 20px; width: 300px; background: white; border: 1px solid #ddd; border-top: 5px solid var(--primary); border-radius: 12px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); font-family: sans-serif; }
         #chat-content { height: 280px; padding: 15px; overflow-y: auto; color: #333; font-size: 13px; text-align: left; }
         .chat-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; background: #f9f9f9; }
         .chat-input-area input { flex: 1; border: 1px solid #ddd; padding: 8px; border-radius: 5px; outline: none; }
@@ -123,102 +75,93 @@
     <div id="chat-window">
         <div style="background:var(--primary); color:white; padding:12px; text-align:center; font-weight:bold; font-size:13px;">ASSISTENTE MÁRCIO PIOVESAN</div>
         <div id="chat-content">
-            <p><strong>Robô:</strong> Olá! Sou o assistente do Márcio. Como posso te chamar?</p>
+            <p><strong>Robô:</strong> Olá! Sou o assistente virtual do Márcio. Como posso te chamar?</p>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="user-input" placeholder="Tire sua dúvida...">
+            <input type="text" id="user-input" placeholder="Digite sua dúvida...">
             <button onclick="sendMessage()">OK</button>
         </div>
     </div>
 
-    <header>
-        <div class="hero" data-aos="fade-down">
-            <h1>Márcio Piovesan</h1>
-            <p style="font-weight: bold; font-size: 1.1em; margin: 10px 0;">"Tradição e segurança em Imposto de Renda desde 2013"</p>
-            <p>"Sua tranquilidade com o leão"</p>
+    <div id="site">
+        <header>
+            <div class="hero" data-aos="fade-down">
+                <h1>Márcio Piovesan</h1>
+                <p style="font-weight: bold; font-size: 1.1em; margin: 10px 0;">"Tradição e segurança em Imposto de Renda desde 2013"</p>
+                <p>"Sua tranquilidade com o leão"</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="card" data-aos="zoom-in">
+                <h2 style="text-align:center">Consultoria de Imposto de Renda</h2>
+                <p style="text-align:center">Atendimento especializado <strong>On-line</strong> e <strong>Presencial</strong> em Cordeirópolis/SP.</p>
+                <p style="text-align:center; font-weight: bold; font-size: 1.2em; color: var(--accent); margin: 20px 0;">Não espere o leão rugir, fale agora com Márcio Piovesan!</p>
+                <a href="https://wa.me/5519996583013" onclick="trackZap()" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Chamar no WhatsApp</a>
+            </div>
+
+            <div class="card servicos" data-aos="fade-up">
+                <h3>Como podemos te servir:</h3>
+                <ul>
+                    <li>Declaração Simplificada e Completa</li>
+                    <li>Regularização de CPF e Pendências</li>
+                    <li>Ganho de Capital (Imóveis e Veículos)</li>
+                    <li>Rendimentos do Exterior e Investimentos</li>
+                    <li>Planejamento Tributário Anual</li>
+                </ul>
+            </div>
+
+            <div class="card" data-aos="fade-up">
+                <h3 style="text-align: center; color: var(--primary);"><i class="fas fa-file-invoice"></i> Documentos para o IR 2026</h3>
+                
+                <details class="documentos-menu">
+                    <summary>1. Documentos Pessoais (Clique aqui)</summary>
+                    <div class="menu-conteudo">
+                        <ul>
+                            <li>RG, CPF e Título de Eleitor</li>
+                            <li>Comprovante de residência atualizado</li>
+                            <li>Dados bancários para restituição</li>
+                            <li>Última declaração de IR (se tiver)</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="documentos-menu">
+                    <summary>2. Comprovantes de Renda (Clique aqui)</summary>
+                    <div class="menu-conteudo">
+                        <ul>
+                            <li>Relatório de Rendimentos da empresa (Holerites)</li>
+                            <li>Relatório de Rendimentos dos Bancos/Corretoras</li>
+                            <li>Comprovantes de aposentadoria ou pensão</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="documentos-menu">
+                    <summary>3. Recibos e Bens (Clique aqui)</summary>
+                    <div class="menu-conteudo">
+                        <ul>
+                            <li>Recibos médicos, dentistas e planos de saúde</li>
+                            <li>Comprovantes de gastos com educação</li>
+                            <li>Documentos de compra/venda de carros ou imóveis</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
         </div>
-    </header>
 
-    <div class="container">
-        <div class="card" data-aos="zoom-in">
-            <h2 style="text-align:center">Consultoria de Imposto de Renda</h2>
-            <p style="text-align:center">Atendimento especializado <strong>Online</strong> e <strong>Presencial</strong> em Cordeirópolis/SP.</p>
-            <p style="text-align:center; font-weight: bold; font-size: 1.2em; color: #ff3e3e; margin: 20px 0;">
-                Não espere o leão rugir, fale agora com Márcio Piovesan!
-            </p>
-
-            <a href="https://wa.me/5519996583013" onclick="trackZap()" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
-            </a>
+        <footer>© 2026 <strong>Márcio Piovesan</strong> | Cordeirópolis/SP</footer>
+        <div class="creditos-gabriel">
+            <span>Desenvolvido por Gabriel Piovesan</span>
+            <a href="https://wa.me/5519993405480" target="_blank" class="btn-gabriel"><i class="fab fa-whatsapp"></i> Chame o Gabriel</a>
         </div>
-
-        <div class="card servicos" data-aos="fade-up">
-            <h3>Como podemos te ajudar:</h3>
-            <ul>
-                <li>Declaração Simplificada e Completa</li>
-                <li>Regularização de CPF e Pendências</li>
-                <li>Ganho de Capital (Imóveis e Veículos)</li>
-                <li>Rendimentos do Exterior e Investimentos</li>
-                <li>Planejamento Tributário Anual</li>
-            </ul>
-        </div>
-
-        <div class="card" data-aos="fade-up">
-            <h3 style="text-align: center; color: #003366;"><i class="fas fa-file-invoice"></i> Documentos para o IR 2026</h3>
-            
-            <details class="documentos-menu">
-                <summary>1. Documentos Pessoais</summary>
-                <div class="conteudo-menu">
-                    <ul>
-                        <li>RG, CPF e Título de Eleitor</li>
-                        <li>Comprovante de residência atualizado</li>
-                        <li>Dados bancários para restituição</li>
-                        <li>Última declaração de IR (se tiver)</li>
-                    </ul>
-                </div>
-            </details>
-
-            <details class="documentos-menu">
-                <summary>2. Comprovantes de Renda</summary>
-                <div class="conteudo-menu">
-                    <ul>
-                        <li>Informe de Rendimentos da empresa (Holerites/Pró-labore)</li>
-                        <li>Informe de Rendimentos dos Bancos/Corretoras</li>
-                        <li>Comprovantes de aposentadoria ou pensão</li>
-                    </ul>
-                </div>
-            </details>
-
-            <details class="documentos-menu">
-                <summary>3. Recibos e Bens (Deduções)</summary>
-                <div class="conteudo-menu">
-                    <ul>
-                        <li>Recibos médicos, dentistas e planos de saúde</li>
-                        <li>Comprovantes de gastos com educação (escola/faculdade)</li>
-                        <li>Documentos de compra/venda de carros ou imóveis no ano</li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-    </div>
- 
-    <footer>
-        © 2026 <strong style="color: #000000;">Márcio Piovesan</strong> | Cordeirópolis/SP<br>
-        Desenvolvido por Gabriel Piovesan
-    </footer>
-
-    <div class="creditos-gabriel">
-        <span>Quer criar um site?</span>
-        <a href="https://wa.me/5519993405480" target="_blank" class="btn-gabriel">
-            <i class="fab fa-whatsapp"></i> Chame o Gabriel
-        </a>
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
-
-        let nomeUser = ""; 
+        
+        let nomeUsuario = ""; 
         let etapaChat = 1;
 
         function toggleChat() {
@@ -227,52 +170,51 @@
         }
 
         function sendMessage() {
-            const input = document.getElementById('user-input');
+            const entrada = document.getElementById('user-input');
             const area = document.getElementById("chat-content");
-            const msgOrig = input.value.trim();
-            const msg = msgOrig.toLowerCase();
-            if (!msg) return;
+            const msgOrig = entrada.value.trim();
+            const mensagem = msgOrig.toLowerCase();
+            if (!mensagem) return;
 
             area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
-            input.value = "";
+            entrada.value = "";
 
-            const tid = "t-" + Date.now();
-            area.innerHTML += `<div id="${tid}" class="typing">Márcio está digitando...</div>`;
+            const tide = "t-" + Date.now();
+            area.innerHTML += `<div id="${tide}" class="typing">Aguarde, processando...</div>`;
             area.scrollTop = area.scrollHeight;
 
             setTimeout(() => {
-                const te = document.getElementById(tid); if (te) te.remove();
+                const te = document.getElementById(tide); if (te) te.remove();
                 let r = ""; let zap = false;
 
                 if (etapaChat === 1) {
-                    nomeUser = msgOrig;
-                    r = `Prazer, ${nomeUser}! 😊 Como posso ajudar você e o Márcio hoje com o Imposto de Renda?`;
+                    nomeUsuario = msgOrig;
+                    r = `Prazer, ${nomeUsuario}! 😊 Como posso te ajudar hoje?`;
                     etapaChat = 2;
                 } else {
-                    if (msg.includes("documento") || msg.includes("precisa")) {
-                        r = `${nomeUser}, a lista de documentos está detalhada no site, mas os principais são Informes de Rendimentos e recibos. Quer falar com o Márcio?`;
+                    if (mensagem.includes("documento") || mensagem.includes("enviar")) {
+                        r = `${nomeUsuario}, a lista completa de documentos está aqui no site no Cartão "Documentos para o IR 2026". Precisa de ajuda para organizar?`;
+                    }
+                    else if (mensagem.includes("prazo") || mensagem.includes("dados")) {
+                        r = "O prazo do IR 2026 vai até maio. O ideal é não deixar para a última hora!";
+                    }
+                    else if (mensagem.includes("valor") || mensagem.includes("quanto")) {
+                        r = "O valor da Declaração do Imposto de Renda é R$70,00:";
                         zap = true;
                     }
-                    else if (msg.includes("prazo") || msg.includes("data")) {
-                        r = "O prazo final para o IR 2026 é maio. Recomendo não deixar para os últimos dias!";
-                    }
-                    else if (msg.includes("valor") || msg.includes("quanto")) {
-                        r = "O valor depende da sua situação. O Márcio pode te passar um orçamento agora mesmo:";
-                        zap = true;
-                    }
-                    else if (msg.includes("sim") || msg.includes("quero") || msg.includes("ok")) {
-                        r = "Maravilha! Só clicar no botão abaixo para iniciar o atendimento:";
+                    else if (mensagem.includes("sim") || mensagem.includes("quero")) {
+                        r = "Perfeito! Clique no botão abaixo para falar com o Márcio:";
                         zap = true;
                     }
                     else {
-                        r = `Entendi, ${nomeUser}! Para dúvidas mais complexas, o Márcio te responde direto no WhatsApp.`;
+                        r = `Entendi, ${nomeUsuario}! Vou deixar o link do WhatsApp do Márcio aqui para você tirar essa dúvida direto com ele.`;
                         zap = true;
                     }
                 }
 
                 area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
                 if(zap) {
-                    area.innerHTML += `<div style="text-align:center;margin:10px 0;"><a href="https://wa.me/5519996583013?text=Olá Márcio, vim pelo site!" onclick="trackZap()" target="_blank" style="background:#25d366;color:white;padding:10px 18px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:12px;display:inline-block;"><i class="fab fa-whatsapp"></i> Chamar Márcio</a></div>`;
+                    area.innerHTML += `<div style="text-align:center;margin:10px 0;"><a href="https://wa.me/5519996583013?text=Olá Márcio, vim pelo site e preciso de ajuda com meu IR" onclick="trackZap()" target="_blank" style="background:#25d366;color:white;padding:10px 18px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:12px;display:inline-block;"><i class="fab fa-whatsapp"></i> Chamar Márcio no Zap</a></div>`;
                 }
                 area.scrollTop = area.scrollHeight;
             }, 1200);
